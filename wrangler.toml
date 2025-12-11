@@ -1,4 +1,4 @@
-name: Build & Deploy Frontend
+name: Build Frontend
 
 on:
   push:
@@ -13,10 +13,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: "18"
 
       - name: Install dependencies
         run: npm install
@@ -24,8 +24,8 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Upload build artifact
+      - name: Upload build artifacts (optional)
         uses: actions/upload-artifact@v3
         with:
-          name: frontend-dist
+          name: dist
           path: dist
