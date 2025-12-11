@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: magic-frontend
+  namespace: magic-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: magic-frontend
+  template:
+    metadata:
+      labels:
+        app: magic-frontend
+    spec:
+      containers:
+        - name: magic-frontend
+          image: ghcr.io/abhichaudhary2077/first-read-magic:latest
+          ports:
+            - containerPort: 80
