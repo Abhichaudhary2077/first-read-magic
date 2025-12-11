@@ -1,22 +1,23 @@
-name: Build Frontend
+name: Build & Test Frontend
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: 20
 
       - name: Install dependencies
         run: npm install
@@ -24,8 +25,8 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Upload build artifacts (optional)
-        uses: actions/upload-artifact@v3
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
         with:
-          name: dist
-          path: dist
+          name: build
+          path: dist/
