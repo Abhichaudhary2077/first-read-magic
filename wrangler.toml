@@ -1,4 +1,4 @@
-name: Build Frontend
+name: Build Only (No Cloudflare Deploy)
 
 on:
   push:
@@ -25,8 +25,8 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Upload build artifact
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: dist
+          name: frontend-dist
           path: dist/
