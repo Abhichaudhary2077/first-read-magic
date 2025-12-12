@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: magic-frontend
-          image: ghcr.io/abhichaudhary2077/first-read-magic:latest
+          image: ghcr.io/abhichaudhary2077/first-read-magic:v2
           ports:
             - containerPort: 80
