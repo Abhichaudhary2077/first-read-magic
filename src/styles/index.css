@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+@layer base {
+  :root {
+    /* Hacker/Cyberpunk Theme */
+    --background: 220 20% 4%;
+    --foreground: 120 100% 50%;
+
+    --card: 220 20% 6%;
+    --card-foreground: 120 100% 50%;
+
+    --popover: 220 20% 6%;
+    --popover-foreground: 120 100% 50%;
+
+    --primary: 120 100% 50%;
+    --primary-foreground: 220 20% 4%;
+
+    --secondary: 180 100% 50%;
+    --secondary-foreground: 220 20% 4%;
+
+    --muted: 220 20% 12%;
+    --muted-foreground: 120 40% 40%;
+
+    --accent: 300 100% 60%;
+    --accent-foreground: 220 20% 4%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 120 100% 20%;
+    --input: 120 100% 20%;
+    --ring: 120 100% 50%;
+
+    --radius: 0.25rem;
+
+    /* Custom tokens */
+    --glow-primary: 0 0 20px hsl(120 100% 50% / 0.5);
+    --glow-secondary: 0 0 20px hsl(180 100% 50% / 0.5);
+    --glow-accent: 0 0 20px hsl(300 100% 60% / 0.5);
+    --glow-destructive: 0 0 20px hsl(0 100% 50% / 0.5);
+
+    --sidebar-background: 220 20% 4%;
+    --sidebar-foreground: 120 100% 50%;
+    --sidebar-primary: 120 100% 50%;
+    --sidebar-primary-foreground: 220 20% 4%;
+    --sidebar-accent: 220 20% 12%;
+    --sidebar-accent-foreground: 120 100% 50%;
+    --sidebar-border: 120 100% 20%;
+    --sidebar-ring: 120 100% 50%;
+  }
+
+  .dark {
+    --background: 220 20% 4%;
+    --foreground: 120 100% 50%;
+    --card: 220 20% 6%;
+    --card-foreground: 120 100% 50%;
+    --popover: 220 20% 6%;
+    --popover-foreground: 120 100% 50%;
+    --primary: 120 100% 50%;
+    --primary-foreground: 220 20% 4%;
+    --secondary: 180 100% 50%;
+    --secondary-foreground: 220 20% 4%;
+    --muted: 220 20% 12%;
+    --muted-foreground: 120 40% 40%;
+    --accent: 300 100% 60%;
+    --accent-foreground: 220 20% 4%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 120 100% 20%;
+    --input: 120 100% 20%;
+    --ring: 120 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+  }
+}
+
+@layer components {
+  .cyber-glow {
+    text-shadow: var(--glow-primary);
+  }
+
+  .cyber-glow-secondary {
+    text-shadow: var(--glow-secondary);
+  }
+
+  .cyber-glow-accent {
+    text-shadow: var(--glow-accent);
+  }
+
+  .cyber-box {
+    @apply border border-primary/50 bg-card/80 backdrop-blur-sm;
+    box-shadow: inset 0 0 30px hsl(120 100% 50% / 0.05), var(--glow-primary);
+  }
+
+  .cyber-input {
+    @apply bg-background/50 border border-primary/30 text-foreground placeholder:text-muted-foreground;
+    @apply focus:border-primary focus:ring-1 focus:ring-primary;
+  }
+
+  .scanline {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scanline::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsl(120 100% 50% / 0.03) 2px,
+      hsl(120 100% 50% / 0.03) 4px
+    );
+    pointer-events: none;
+  }
+
+  .matrix-bg {
+    background: 
+      radial-gradient(ellipse at 50% 0%, hsl(120 100% 50% / 0.1) 0%, transparent 50%),
+      linear-gradient(180deg, hsl(220 20% 4%) 0%, hsl(220 20% 2%) 100%);
+  }
+}
+
+@layer utilities {
+  .text-gradient-cyber {
+    @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
+  }
+
+  .animate-flicker {
+    animation: flicker 0.15s infinite;
+  }
+
+  .animate-glitch {
+    animation: glitch 0.5s infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-typing {
+    animation: typing 3.5s steps(40, end);
+  }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    text-shadow: 0 0 10px hsl(120 100% 50% / 0.5), 0 0 20px hsl(120 100% 50% / 0.3);
+  }
+  50% { 
+    text-shadow: 0 0 20px hsl(120 100% 50% / 0.8), 0 0 40px hsl(120 100% 50% / 0.5);
+  }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes matrix-fall {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
